@@ -1,0 +1,20 @@
+{% extends 'assignments/base.html' %}
+{% block content %}
+  <h2>{% if assignment %}Edit{% else %}Create{% endif %} Assignment</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="form-label">Title</label>
+      <input type="text" name="title" value="{{ assignment.title|default:'' }}" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea name="description" class="form-control">{{ assignment.description|default:'' }}</textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Deadline</label>
+      <input type="date" name="deadline" value="{{ assignment.deadline|default:'' }}" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+  </form>
+{% endblock %}
